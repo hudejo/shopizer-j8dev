@@ -43,7 +43,7 @@ public class ProductVariationFacadeImpl implements ProductVariationFacade {
 		Validate.notNull(store, "MerchantStore cannot be null");
 		Validate.notNull(language, "Language cannot be null");
 		Optional<ProductVariation> variation =  productVariationService.getById(store, variationId, language);
-		if(variation.isEmpty()) {
+		if(!variation.isPresent()) {
 			throw new ResourceNotFoundException("ProductVariation not found for id [" + variationId +"] and store [" + store.getCode() + "]");
 		}
 		
@@ -102,7 +102,7 @@ public class ProductVariationFacadeImpl implements ProductVariationFacade {
 		Validate.notNull(var, "PersistableProductVariation cannot be null");
 		
 		Optional<ProductVariation> p =  productVariationService.getById(store, variationId, language);
-		if(p.isEmpty()) {
+		if(!p.isPresent()) {
 			throw new ResourceNotFoundException("ProductVariation not found for id [" + variationId +"] and store [" + store.getCode() + "]");
 		}
 		

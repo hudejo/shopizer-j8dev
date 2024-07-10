@@ -136,7 +136,7 @@ public class ReadableShoppingCartMapper implements Mapper<ShoppingCart, Readable
 					//variation
 					if(item.getVariant() != null) {
 						Optional<ProductVariant> productVariant = productVariantService.getById(item.getVariant(), store);
-						if(productVariant.isEmpty()) {
+						if(!productVariant.isPresent()) {
 							throw new ConversionRuntimeException("An error occured during shopping cart [" + source.getShoppingCartCode() + "] conversion, productVariant [" + item.getVariant() + "] not found");
 						}
 						shoppingCartItem.setVariant(readableProductVariationMapper.convert(productVariant.get().getVariation(), store, language));

@@ -66,7 +66,7 @@ public class ProductVariantFacadeImpl implements ProductVariantFacade {
 	public ReadableProductVariant get(Long instanceId, Long productId, MerchantStore store, Language language) {
 		Optional<ProductVariant> productVariant =  this.getproductVariant(instanceId, productId, store);
 		
-		if(productVariant.isEmpty()) {
+		if(!productVariant.isPresent()) {
 			throw new ResourceNotFoundException("Product instance + [" + instanceId + "] not found for store [" + store.getCode() + "]");
 		}
 		
@@ -134,7 +134,7 @@ public class ProductVariantFacadeImpl implements ProductVariantFacade {
 		Validate.notNull(instanceId, "Product instance id cannot be null");
 		
 		Optional<ProductVariant> instanceModel = this.getproductVariant(instanceId, productId, store);
-		if(instanceModel.isEmpty()) {
+		if(!instanceModel.isPresent()) {
 			throw new ResourceNotFoundException("productVariant with id [" + instanceId + "] not found for store [" + store.getCode() + "] and productId [" + productId + "]");
 		}
 		
@@ -162,7 +162,7 @@ public class ProductVariantFacadeImpl implements ProductVariantFacade {
 
 		
 		Optional<ProductVariant> instanceModel = this.getproductVariant(productVariant, productId, store);
-		if(instanceModel.isEmpty()) {
+		if(!instanceModel.isPresent()) {
 			throw new ResourceNotFoundException("productVariant with id [" + productVariant + "] not found for store [" + store.getCode() + "] and productId [" + productId + "]");
 		}
 		

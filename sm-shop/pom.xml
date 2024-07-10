@@ -92,6 +92,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.29</version>
+		</dependency>
+
+		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
 		</dependency>
@@ -154,5 +160,5 @@
 		<finalName>shopizer</finalName>
 	</build>
 
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 </project>

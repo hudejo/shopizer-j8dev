@@ -107,7 +107,7 @@ public class ProductVariantGroupFacadeImpl implements ProductVariantGroupFacade 
 			//null all group from instances
 			for(ProductVariant instance : group.getProductVariants()) {
 				Optional<ProductVariant> p = productVariantService.getById(instance.getId(), store);
-				if(p.isEmpty()) {
+				if(!p.isPresent()) {
 					throw new ResourceNotFoundException("Product instance [" + instance.getId() + " not found for store [" + store.getCode() + "]");
 				}
 				instance.setProductVariantGroup(null);
@@ -139,7 +139,7 @@ public class ProductVariantGroupFacadeImpl implements ProductVariantGroupFacade 
 	
 	private ProductVariantGroup group(Long productOptionGroupId,MerchantStore store) {
 		Optional<ProductVariantGroup> group = productVariantGroupService.getById(productOptionGroupId, store);
-		if(group.isEmpty()) {
+		if(!group.isPresent()) {
 			throw new ResourceNotFoundException("Product instance group [" + productOptionGroupId + "] not found");
 		}
 		

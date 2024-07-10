@@ -54,7 +54,7 @@ public class ProductDefinitionFacadeImpl implements ProductDefinitionFacade {
 		Product target = null;
 		if (product.getId() != null && product.getId().longValue() > 0) {
 			Optional<Product> p = productService.retrieveById(product.getId(), store);
-			if(p.isEmpty()) {
+			if(!p.isPresent()) {
 				throw new ResourceNotFoundException("Product with id [" + product.getId() + "] not found for store [" + store.getCode() + "]");
 			}
 			target = p.get();

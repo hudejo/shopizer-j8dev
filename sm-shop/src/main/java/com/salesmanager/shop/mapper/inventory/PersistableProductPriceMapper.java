@@ -72,7 +72,7 @@ public class PersistableProductPriceMapper implements Mapper<PersistableProductP
 			if (isPositive(source.getProductAvailabilityId())) {
 				Optional<ProductAvailability> avail = productAvailabilityService
 						.getById(source.getProductAvailabilityId(), store);
-				if (avail.isEmpty()) {
+				if (!avail.isPresent()) {
 					throw new ConversionRuntimeException(
 							"Product availability with id [" + source.getProductAvailabilityId() + "] was not found");
 				}

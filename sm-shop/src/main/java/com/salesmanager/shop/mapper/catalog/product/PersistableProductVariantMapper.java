@@ -59,7 +59,7 @@ public class PersistableProductVariantMapper implements Mapper<PersistableProduc
 			variation = productVariationService.getById(store, productVariation);
 			if(productVariationValue != null) {
 				variationValue = productVariationService.getById(store, productVariationValue);
-				if(variationValue.isEmpty()) {
+				if(!variationValue.isPresent()) {
 					throw new ResourceNotFoundException("ProductVaritionValue [" + productVariationValue + "] + not found for store [" + store.getCode() + "]");
 				}
 				
@@ -68,7 +68,7 @@ public class PersistableProductVariantMapper implements Mapper<PersistableProduc
 			variation = productVariationService.getByCode(store, productVariationCode);
 			if(productVariationValueCode != null) {
 				variationValue = productVariationService.getByCode(store, productVariationValueCode);
-				if(variationValue.isEmpty()) {
+				if(!variationValue.isPresent()) {
 					throw new ResourceNotFoundException("ProductVaritionValue [" + productVariationValue + "] + not found for store [" + store.getCode() + "]");
 				}
 				
@@ -76,7 +76,7 @@ public class PersistableProductVariantMapper implements Mapper<PersistableProduc
 		}
 				
 		
-		if(variation.isEmpty()) {
+		if(!variation.isPresent()) {
 			throw new ResourceNotFoundException("ProductVarition [" + productVariation + "] + not found for store [" + store.getCode() + "]");
 		}
 		
